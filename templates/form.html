@@ -1,0 +1,24 @@
+{{ define "title" }}
+  {{ with . }}
+    Edit To-Do
+  {{ else }}
+    New To-Do
+  {{ end }}
+{{ end }}
+
+{{ define "body" }}
+  <h3>New To-Do!</h3>
+  {{ if . }}
+  <form action="/todos/{{ .ID }}" method="post">
+  {{ else }}
+  <form action="/todos/new" method="post">
+  {{ end }}
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="{{ .Title }}">
+    <br>
+    <label for="title">Deadline:</label>
+    <input type="date" name="deadline" id="deadline" value="{{ .FormatedDate }}">
+    <br>
+    <input type="submit" value="Save">
+  </form>
+{{ end }}

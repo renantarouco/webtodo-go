@@ -1,0 +1,33 @@
+{{ define "title" }}
+  To-Dos List
+{{ end }}
+
+{{ define "body" }}
+<header>
+  <h1>What to do next!</h1>
+</header>
+<section>
+  <table>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr>
+        {{ range . }}
+          <tr>
+            <td><a href="/todos/{{ .ID }}">{{ .Title }}</a></td>
+            <td>{{ .Deadline.Format "02-Jan-2006" }}</td>
+            <td>
+              <a href="/todos/delete/{{ .ID }}">x</a>
+            </td>
+          </tr>
+        {{ else }}
+          No To-Dos registered!
+        {{ end }}
+      </tr>
+    </tbody>
+  </table>
+</section>
+{{ end }}
